@@ -5,4 +5,5 @@ for var0 in 2.0e-3 1.0e-3 5.0e-4 2.50e-4 1.25e-4 6.25e-5 3.125e-5
     echo "Time step: $var0 "
     python /home/parsanm/workspace/research_codes/nek_family/nek-tools/genrun/genrun.py -u ../eddy_uv_f90.tusr -d eddy_uv_convergence_ts.json '--override={"dt": '$var0'}' --no-make test_eddy_uv_f90
     sh /home/parsanm/workspace/research_codes/nek_family/NekBox/nekmpi test_eddy_uv_f90 4 |tee test_eddy_uv_f90_${var0}.out
+    grep "X err" test_eddy_uv_f90_${var0}.out | tail -1 >> cnv.out
   done
